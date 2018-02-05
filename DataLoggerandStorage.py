@@ -1,3 +1,4 @@
+import os
 from struct import pack, unpack
 from time import sleep
 from datetime import datetime
@@ -6,6 +7,9 @@ from pymodbus.pdu import ModbusRequest
 from pymodbus.exceptions import ModbusIOException, ParameterException, ConnectionException
 from pytz import timezone
 from influxdb import InfluxDBClient, SeriesHelper
+
+def reStart()
+  os.system('sudo reboot')
 
 def dataWrite(file_name, time2, time1, e, p, v, c, cv, c1, c2, c3):
   file = open(file_name, "a")
@@ -67,5 +71,6 @@ while connection:
     dataWrite(file_name2, time2, time1, energy2, power2, voltage2, current2, avgcurrent2, currentl21, currentl22, currentl23)
     sleep(50)
 
-  except(ModbusIOException, ConnectionException,InfluxDBClientError, InfluxDBServerError): pass
+  except(ModbusIOException, ConnectionException,InfluxDBClientError, InfluxDBServerError):
+    reStart()
 
